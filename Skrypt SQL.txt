@@ -1,0 +1,79 @@
+CREATE TABLE `kategorie` (
+ `id` mediumint(9) NOT NULL auto_increment,
+ `nazwa` varchar(40) NOT NULL,
+ PRIMARY KEY (`id`)
+) ;
+INSERT INTO `kategorie` VALUES (1, 'brak');
+INSERT INTO `kategorie` VALUES (2, 'Literatura polska');
+INSERT INTO `kategorie` VALUES (3, 'Literatura zagraniczna');
+CREATE TABLE `ksiazki` (
+ `id` int(11) NOT NULL auto_increment,
+ `nazwa` varchar(100) NOT NULL,
+ `wydawnictwo` varchar(50) NOT NULL,
+ `cena` float NOT NULL default '0',
+ `kategoria_id` mediumint(9) NULL,
+ PRIMARY KEY (`id`),
+ FOREIGN KEY (`kategoria_id`) REFERENCES `kategorie`(`id`)
+) ;
+INSERT INTO `ksiazki` VALUES (1, 'Hamlet', 'AAA', 6.5, 3);
+INSERT INTO `ksiazki` VALUES (2, 'Makbet', 'AAA', 6.8, 2);
+INSERT INTO `ksiazki` VALUES (3, 'Potop', 'BBB', 18.4, 2);
+INSERT INTO `ksiazki` VALUES (4, 'Quo vadis', 'BBB', 17.99, 2);
+INSERT INTO `ksiazki` VALUES (5, 'Pan Tadeusz', 'CCC', 13.78, 2);
+INSERT INTO `ksiazki` VALUES (6, 'Nad Niemnem', 'CCC', 15.45, 2);
+CREATE TABLE `autorzy` (
+`id` SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`imie` VARCHAR(30) NOT NULL,
+`nazwisko` VARCHAR(40) NOT NULL
+);
+INSERT INTO `autorzy` (`imie` , `nazwisko`) VALUES
+('William', 'Shakespeare'),
+('Henryk', 'Sienkiewicz'),
+('Adam', 'Mickiewicz'),
+('Eliza', 'Orzeszkowa'),
+('Jan', 'Kowalski');
+CREATE TABLE `autorzy_to_ksiazki` (
+ `ksiazka_id` int(11) NOT NULL,
+ `autor_id` SMALLINT NOT NULL,
+ PRIMARY KEY (`autor_id`,`ksiazka_id`),
+ # KEY `FK_AUTOR_idx` (`autor_id`),
+ CONSTRAINT `FK_AUTOR` FOREIGN KEY (`autor_id`)
+ REFERENCES `autorzy` (`id`),
+ CONSTRAINT `FK_KSIAZKA` FOREIGN KEY (`ksiazka_id`)
+ REFERENCES `ksiazki` (`id`)
+);
+INSERT INTO `autorzy_to_ksiazki` VALUES (1, 1);
+INSERT INTO `autorzy_to_ksiazki` VALUES (1, 5);
+INSERT INTO `autorzy_to_ksiazki` VALUES (2, 1);
+INSERT INTO `autorzy_to_ksiazki` VALUES (2, 5);
+INSERT INTO `autorzy_to_ksiazki` VALUES (3, 2);
+INSERT INTO `autorzy_to_ksiazki` VALUES (4, 2);
+INSERT INTO `autorzy_to_ksiazki` VALUES (5, 3);
+INSERT INTO `autorzy_to_ksiazki` VALUES (6, 4);
+
+CREATE TABLE users (
+ id BIGINT(50) NOT NULL AUTO_INCREMENT,
+ username VARCHAR(25) NOT NULL,
+ password VARCHAR(60) NOT NULL,
+ isActive ENUM('0','1') NOT NULL DEFAULT '0',
+ PRIMARY KEY (id)
+);
+CREATE TABLE roles (
+ id BIGINT(50) NOT NULL AUTO_INCREMENT,
+ role VARCHAR(45) NOT NULL,
+ PRIMARY KEY (id)
+);
+CREATE TABLE user_roles (
+ id BIGINT(50) NOT NULL AUTO_INCREMENT,
+ user_id BIGINT(50) NOT NULL,
+ role_id BIGINT(50) NOT NULL,
+ PRIMARY KEY (id)
+);
+
+
+INSERT INTO roles (role) VALUES('ROLE_ADMIN'), ('ROLE_USER');
+INSERT INTO users (username,password,isActive) VALUES
+('admin','$2a$04$zzchzNzfGQP.j8oylRFJJu6VMMGe9uToxEOFVwws.tmaYZNrK/4Uu','1');
+INSERT INTO users (username,password,isActive) VALUES
+('user','$2a$04$lOLxtbIEZpjWcA3bFUX7JegBIC83El2Ekbg7VMnlINJ9qIP/qwhyq','1');
+INSERT INTO user_roles (user_id,role_id) VALUES ('1','1'),('1','2'),('2','2');
