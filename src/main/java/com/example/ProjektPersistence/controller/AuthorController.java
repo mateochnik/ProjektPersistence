@@ -1,6 +1,7 @@
 package com.example.ProjektPersistence.controller;
 
 import com.example.ProjektPersistence.entity.Autor;
+import com.example.ProjektPersistence.entity.Ksiazka;
 import com.example.ProjektPersistence.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,9 @@ public class AuthorController {
     @RequestMapping("list/{id}")
     public String getAuthor(@PathVariable int id, Model model){
         Autor author = authorService.getAuthor(id);
+        List<Ksiazka> books = authorService.findBooksByAuthorId(id);
         model.addAttribute("author", author);
+        model.addAttribute("books", books);
         return "author";
     }
 

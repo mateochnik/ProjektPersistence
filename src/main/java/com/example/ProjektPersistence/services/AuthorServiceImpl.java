@@ -2,6 +2,7 @@ package com.example.ProjektPersistence.services;
 
 import com.example.ProjektPersistence.dao.AuthorDAO;
 import com.example.ProjektPersistence.entity.Autor;
+import com.example.ProjektPersistence.entity.Ksiazka;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,5 +43,11 @@ public class AuthorServiceImpl implements AuthorService {
     public void updateAuthor(int id, Autor autor) {
         authorDAO.editAuthor(id, autor);
 
+    }
+
+    @Override
+    @Transactional
+    public List<Ksiazka> findBooksByAuthorId(int authorId) {
+        return authorDAO.findBooksByAuthorId(authorId);
     }
 }

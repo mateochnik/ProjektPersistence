@@ -19,12 +19,30 @@
    </tr>
    </table>
  </div>
+ <p></p>
+ <p>Lista Ksiazek:</p>
  <div>
-     <input type="button" value="Delete Author"
+   <table>
+    <tr>
+    <th>Nazwa</th>
+    <th>Wydawnictwo</th>
+    <th>Cena</th>
+    </tr>
+   <c:forEach var="books" items="${books}" >
+    <tr>
+    <td>${books.nazwa}</td>
+    <td>${books.wydawnictwo}</td>
+    <td>${books.cena}</td>
+     </tr>
+     </c:forEach>
+     </table>
+ </div>
+ <div>
+     <input type="button" value="Dodaj Autora"
      onclick="window.location.href='${id}/delete';return false;" />
      </div>
   <div>
-       <input type="button" value="Edit Author"
+       <input type="button" value="Edytuj Autora"
        onclick="window.location.href='${id}/edit';return false;" />
        </div>
 </body>

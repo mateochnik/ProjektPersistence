@@ -4,7 +4,7 @@
  <title>books</title>
 </head>
 <body>
-ADD BOOK
+DODAWANIE KSIAZKI
 <form:form action="saveBook" modelAttribute="book" method="POST">
  <table>
  <tbody>
@@ -29,7 +29,10 @@ ADD BOOK
                       <form:options items = "${category}" />
                    </form:select>
                 </td>
+
  </tr>
+
+
  <tr>
  <td><label></label></td>
  <td><input type="submit" value="Save" class="save" /></td>

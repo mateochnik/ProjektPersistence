@@ -24,7 +24,7 @@ public class Ksiazka {
     @Column(name="cena")
     private float cena;
     @ManyToOne(cascade =
-            {CascadeType.ALL})
+            {CascadeType.ALL} )
     @JoinColumn(name="kategoria_id")
     private Kategoria kategoria;
     @ManyToMany

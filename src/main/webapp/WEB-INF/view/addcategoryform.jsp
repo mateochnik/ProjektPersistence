@@ -4,7 +4,7 @@
  <title>categories</title>
 </head>
 <body>
-ADD CATEGORY
+DODAWANIE KATEGORII
 <form:form action="saveCategory" modelAttribute="category" method="POST">
  <table>
  <tbody>

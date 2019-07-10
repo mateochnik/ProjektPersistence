@@ -4,7 +4,7 @@
  <title>authors</title>
 </head>
 <body>
-ADD AUTHOR
+DODAWANIE AUTORA
 <form:form action="saveAuthor" modelAttribute="author" method="POST">
  <table>
  <tbody>

@@ -1,5 +1,6 @@
 package com.example.ProjektPersistence.dao;
 
+import com.example.ProjektPersistence.entity.Autor;
 import com.example.ProjektPersistence.entity.Ksiazka;
 
 import org.hibernate.Session;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Repository;
 import org.hibernate.query.Query;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class BookDAOImpl implements BookDAO {
@@ -67,5 +70,15 @@ public class BookDAOImpl implements BookDAO {
         }
         session.update(book);
 
+    }
+
+    @Override
+    public List<Autor> findAuthorsByBookId(int bookId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery(" from Ksiazka where id = :bookId", Ksiazka.class).setParameter("bookId", bookId);
+        Ksiazka ksiazka = (Ksiazka) query.getSingleResult();
+        Set<Autor> authors = ksiazka.getAutorzy();
+        List<Autor> autors = new ArrayList<>(authors);
+        return  autors;
     }
 }

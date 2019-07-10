@@ -4,18 +4,11 @@
  <title>${category.nazwa}</title>
 </head>
 <body>
- <h2>Informacje:</h2>
+ <h2>${category.nazwa}</h2>
+ <p></p>
+ <p>Lista ksiazek: </p>
  <div>
-  <table>
-   <tr>
-   <th>ID</th>
-   <th>Kategoria</th>
-   </tr>
-   <tr>
-   <td>${category.id}</td>
-   <td>${category.nazwa}</td>
-   </tr>
-   </table>
+
    <table>
     <tr>
     <th>ID</th>
@@ -23,7 +16,7 @@
     <th>Wydawnictwo</th>
     <th>Cena</th>
     </tr>
-   <c:forEach var="books" items="${category.ksiazki}" >
+   <c:forEach var="books" items="${books}" >
     <tr>
     <td>${books.id}</td>
     <td>${books.nazwa}</td>
@@ -33,12 +26,14 @@
      </c:forEach>
      </table>
  </div>
+ <p></p>
  <div>
-     <input type="button" value="Delete Category"
+     <input type="button" value="Usun kategorie"
      onclick="window.location.href='${id}/delete';return false;" />
      </div>
+     <p></p>
   <div>
-       <input type="button" value="Edit Category"
+       <input type="button" value="Edytuj kategorie"
        onclick="window.location.href='${id}/edit';return false;" />
        </div>
 </body>

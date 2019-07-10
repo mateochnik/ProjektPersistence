@@ -4,7 +4,7 @@
  <title>books</title>
 </head>
 <body>
-EDIT AUTHOR
+EDYCJA AUTORA
 <form:form action="editAuthor" modelAttribute="author" method="POST">
  <table>
  <tbody>

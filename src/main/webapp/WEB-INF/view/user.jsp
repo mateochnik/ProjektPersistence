@@ -5,7 +5,7 @@
 <html>
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- <title>user Page</title>
+ <title>Strona Uzytkownika</title>
 </head>
 <body>
 <h1>${ message }</h1>
@@ -17,15 +17,20 @@
 </p>
 <div>
   <input type="button" value="Lista Ksiazek"
-  onclick="window.location.href='books/list';return false;" />
+  onclick="window.location.href='books/list';return false;"
+  style="height:50px; width:400px"/>
   </div>
+  <p></p>
 <div>
   <input type="button" value="Lista Kategorii"
-  onclick="window.location.href='categories/list';return false;" />
+  onclick="window.location.href='categories/list';return false;"
+   style="height:50px; width:400px"/>
   </div>
+  <p></p>
  <div>
-   <input type="button" value="Lista Autorów"
-   onclick="window.location.href='authors/list';return false;" />
+   <input type="button" value="Lista Autorow"
+   onclick="window.location.href='authors/list';return false;"
+    style="height:50px; width:400px"/>
    </div>
 </body>
 </html>

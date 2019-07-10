@@ -1,5 +1,6 @@
 package com.example.ProjektPersistence.services;
 
+import com.example.ProjektPersistence.entity.Autor;
 import com.example.ProjektPersistence.entity.Ksiazka;
 
 import java.util.List;
@@ -10,4 +11,6 @@ public interface BookService {
     Ksiazka getBook(int id);
     void deleteBook(int id);
     void updateBook(int id, Ksiazka ksiazka);
+    List<Autor> getAuthorsByBookId(int bookId);
+
 }

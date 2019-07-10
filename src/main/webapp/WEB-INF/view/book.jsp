@@ -23,13 +23,19 @@
    </tr>
    </table>
  </div>
+ <p></p>
+ Autorzy:
+ <c:forEach var="authors" items="${authors}" >
+ <p>${authors.imie} ${authors.nazwisko}</p>
+  </c:forEach>
  <div>
-     <input type="button" value="Delete Book"
+     <input type="button" value="Usun ksiazke"
      onclick="window.location.href='${id}/delete';return false;" />
      </div>
   <div>
-       <input type="button" value="Edit Book"
+       <input type="button" value="Edytuj ksiazke"
        onclick="window.location.href='${id}/edit';return false;" />
        </div>
 </body>
+
 </html>

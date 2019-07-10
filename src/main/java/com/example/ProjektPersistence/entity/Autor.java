@@ -62,11 +62,7 @@ public class Autor {
     public int getId(){return id;}
     @Override
     public String toString() {
-        return "Autor{" +
-                "id=" + id +
-                ", imie='" + imie + '\'' +
-                ", nazwisko='" + nazwisko + '\'' +
-                '}';
+        return imie +" " +nazwisko;
     }
 }
 

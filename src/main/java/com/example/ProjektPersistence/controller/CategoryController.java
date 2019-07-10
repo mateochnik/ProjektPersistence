@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -17,6 +18,8 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private BookService bookService;
     //@RequestMapping("/list")
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
@@ -32,7 +35,15 @@ public class CategoryController {
     @RequestMapping("list/{id}")
     public String getCategory(@PathVariable int id, Model model){
         Kategoria kategoria = categoryService.getCategory(id);
+        List<Ksiazka> ksiazki = bookService.getBooks();
+        List<Ksiazka> ksiazkiKategoria = new LinkedList<>();
+        for(int i =0; i < ksiazki.size(); i++){
+            if(ksiazki.get(i).getKategoria().getId() == kategoria.getId()){
+                ksiazkiKategoria.add(ksiazki.get(i));
+            }
+        }
         model.addAttribute("category", kategoria);
+        model.addAttribute("books", ksiazkiKategoria);
         return "category";
     }
 

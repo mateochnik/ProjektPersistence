@@ -4,7 +4,7 @@
  <title>books</title>
 </head>
 <body>
-EDIT CATEGORY
+EDYCJA KATEGORII
 <form:form action="editCategory" modelAttribute="category" method="POST">
  <table>
  <tbody>

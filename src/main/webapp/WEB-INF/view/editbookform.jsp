@@ -4,7 +4,7 @@
  <title>books</title>
 </head>
 <body>
-EDIT BOOK
+EDYCJA KSIAZKI
 <form:form action="editBook" modelAttribute="book" method="POST">
  <table>
  <tbody>
@@ -20,9 +20,14 @@ EDIT BOOK
  <td><label>cena:</label></td>
  <td><form:input path="cena" /></td>
  </tr>
- <tr>
- <td><label>kategoria:</label></td>
- <td><form:input path="kategoria" /></td>
+<td><form:label path ="kategoria" modelAttribute = "category">Kategoria: </form:label></td>
+                <td>
+                   <form:select path = "kategoria">
+                      <form:option value = "NONE" label = "Select"/>
+                      <form:options items = "${category}" />
+                   </form:select>
+                </td>
+
  </tr>
  <tr>
  <td><label></label></td>

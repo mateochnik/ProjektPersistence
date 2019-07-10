@@ -11,7 +11,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/books")
@@ -35,7 +38,9 @@ public class BookController {
     @RequestMapping("list/{id}")
     public String getBook(@PathVariable int id, Model model){
         Ksiazka book = bookService.getBook(id);
+        List<Autor> autors = bookService.getAuthorsByBookId(id);
         model.addAttribute("book", book);
+        model.addAttribute("authors", autors);
         return "book";
     }
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -45,6 +50,7 @@ public class BookController {
         Ksiazka book = new Ksiazka();
         List<Kategoria> kategorias = categoryService.getCategories();
         List<Autor> autorzy = authorService.getAuthors();
+
         model.addAttribute("book",book);
         model.addAttribute("category", kategorias);
         model.addAttribute("authors", autorzy);
@@ -53,7 +59,8 @@ public class BookController {
 
 
     @PostMapping("/saveBook")
-    public String saveBook(@ModelAttribute("book") Ksiazka ksiazka) {
+    public String saveBook(@ModelAttribute("book") Ksiazka ksiazka)
+    {
         bookService.saveBook(ksiazka);
         return "redirect:/books/list";
     }
@@ -69,7 +76,9 @@ public class BookController {
     @GetMapping("/list/{id}/edit")
     public String updateBook(@PathVariable int id, Model model){
         Ksiazka book = bookService.getBook(id);
+        List<Kategoria> kategorias = categoryService.getCategories();
         model.addAttribute("book",book);
+        model.addAttribute("category", kategorias);
         return "editbookform";
     }
 

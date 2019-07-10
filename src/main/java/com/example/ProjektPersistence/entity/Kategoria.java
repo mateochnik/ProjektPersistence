@@ -20,7 +20,8 @@ public class Kategoria {
     private int id;
     @Column(name = "nazwa")
     private String nazwa;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "kategoria", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "kategoria", cascade =
+            {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.REMOVE})
     List<Ksiazka> ksiazki;
 
     public int getId() {
